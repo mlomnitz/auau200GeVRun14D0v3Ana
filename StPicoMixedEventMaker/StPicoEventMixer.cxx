@@ -138,9 +138,10 @@ void StPicoEventMixer::mixEvents()
 
             TVector2 QSub = mEvents[0]->Q() - mEvents[0]->pionAt(iTrk1).q();
             if (iEvt2 == 0) QSub -= mEvents[iEvt2]->kaonAt(iTrk2).q();
-            float dPhi = pair.phi() - QSub.Phi() / 2;
-            while (dPhi < 0) dPhi += TMath::Pi();
-            while (dPhi >= TMath::Pi()) dPhi -= TMath::Pi();
+	    // change to 3 for v3
+            float dPhi = pair.phi() - QSub.Phi() / 3;
+            while (dPhi < 0) dPhi += (2.0/3.0)*TMath::Pi();
+            while (dPhi >= (2.0/3.0)*TMath::Pi()) dPhi -= (2.0/3.0)*TMath::Pi();
 
             double toFill[5] = {mCentBin + 0.5, pair.pt(), pair.eta(), pair.m(), dPhi};
             double toFillDaug[5] = {mCentBin + 0.5, pair.pt(), mEvents[0]->pionAt(iTrk1).gMom().perp(), pair.m(), mEvents[iEvt2]->kaonAt(iTrk2).gMom().perp()};
@@ -193,9 +194,10 @@ void StPicoEventMixer::mixEvents()
                   cout << "QSubEtaGap.Mod()==0  nEtaGaps: " << nEtaGaps << endl;
                   continue;
                }
-               float dPhiEtaGap = pair.phi() - QSubEtaGap.Phi() / 2;
-               while (dPhiEtaGap < 0) dPhiEtaGap += TMath::Pi();
-               while (dPhiEtaGap >= TMath::Pi()) dPhiEtaGap -= TMath::Pi();
+	       // Change for v3's
+               float dPhiEtaGap = pair.phi() - QSubEtaGap.Phi() / 3;
+               while (dPhiEtaGap < 0) dPhiEtaGap += (2.0/3.0)*TMath::Pi();
+               while (dPhiEtaGap >= (2.0/3.0)*TMath::Pi()) dPhiEtaGap -= (2.0/3.0)*TMath::Pi();
                double toFill[5] = {mCentBin + 0.5, pair.pt(), pair.m(), dPhiEtaGap, 0.1 * nEtaGaps + 0.05};
 
                if (iEvt2 == 0)
