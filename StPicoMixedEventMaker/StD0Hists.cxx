@@ -30,17 +30,17 @@ StD0Hists::StD0Hists(std::string fileBaseName = "")
    hOneOverBetaDiffPionP = new TH2F("hOneOverBetaDiffPionP", "hOneOverBetaDiffPionP", 50, 0, 5, 100, -0.5, 0.5);
 
    //mix event counts
-   hCentVzPsi = new TH3F("hCentVzPsi", "hCentVzPsi", 9, 0, 9, 10, -6, 6, 10, 0, TMath::Pi());
-   hCentVzPsiSameEventNoWeight = new TH3F("hCentVzPsiSameEventNoWeight", "hCentVzPsiSameEventNoWeight", 9, 0, 9, 10, -6, 6, 10, 0, TMath::Pi());
-   hCentVzPsiMixedNoWeight = new TH3F("hCentVzPsiMixedNoWeight", "hCentVzPsiMixedNoWeight", 9, 0, 9, 10, -6, 6, 10, 0, TMath::Pi());
-   hCentVzPsiSameEvent = new TH3F("hCentVzPsiSameEvent", "hCentVzPsiSameEvent", 9, 0, 9, 10, -6, 6, 10, 0, TMath::Pi());
-   hCentVzPsiMixed = new TH3F("hCentVzPsiMixed", "hCentVzPsiMixed", 9, 0, 9, 10, -6, 6, 10, 0, TMath::Pi());
+   hCentVzPsi = new TH3F("hCentVzPsi", "hCentVzPsi", 9, 0, 9, 10, -6, 6, 10, 0, (2.0/3.0)*TMath::Pi());
+   hCentVzPsiSameEventNoWeight = new TH3F("hCentVzPsiSameEventNoWeight", "hCentVzPsiSameEventNoWeight", 9, 0, 9, 10, -6, 6, 10, 0, (2.0/3.0)*TMath::Pi());
+   hCentVzPsiMixedNoWeight = new TH3F("hCentVzPsiMixedNoWeight", "hCentVzPsiMixedNoWeight", 9, 0, 9, 10, -6, 6, 10, 0, (2.0/3.0)*TMath::Pi());
+   hCentVzPsiSameEvent = new TH3F("hCentVzPsiSameEvent", "hCentVzPsiSameEvent", 9, 0, 9, 10, -6, 6, 10, 0, (2.0/3.0)*TMath::Pi());
+   hCentVzPsiMixed = new TH3F("hCentVzPsiMixed", "hCentVzPsiMixed", 9, 0, 9, 10, -6, 6, 10, 0, (2.0/3.0)*TMath::Pi());
 
    //D0 histograms
    const int nDim = 5;
    int nBins[nDim] = {9, 100, 20, 250, 10};//cent, pt, eta, m, dPhi
    double xMin[nDim] = {0, 0, -1, 0, 0};
-   double xMax[nDim] = {9, 10, 1, 2.5, TMath::Pi()};
+   double xMax[nDim] = {9, 10, 1, 2.5, (2.0/3.0)*TMath::Pi()};
    hD0CentPtEtaMDphi = new THnF("hD0CentPtEtaMDphi", "hD0CentPtEtaMDphi", nDim, nBins, xMin, xMax);
    hD0CentPtEtaMDphiLikeSign = new THnF("hD0CentPtEtaMDphiLikeSign", "hD0CentPtEtaMDphiLikeSign", nDim, nBins, xMin, xMax);
    hD0CentPtEtaMDphiMixed = new THnF("hD0CentPtEtaMDphiMixed", "hD0CentPtEtaMDphiMixed", nDim, nBins, xMin, xMax);
@@ -59,7 +59,7 @@ StD0Hists::StD0Hists(std::string fileBaseName = "")
    const int nDim2 = 5;
    int nBins2[nDim2] = {9, 100, 50, 10, 8};//cent, pt, m, dPhi, etaGap
    double xMin2[nDim2] = {0, 0, 1.6, 0, 0};
-   double xMax2[nDim2] = {9, 10, 2.1, TMath::Pi(), 0.8};
+   double xMax2[nDim2] = {9, 10, 2.1, (2.0/3.0)*TMath::Pi(), 0.8};
    hD0CentPtMDphiEtaGap = new THnF("hD0CentPtMDphiEtaGap", "hD0CentPtMDphiEtaGap", nDim2, nBins2, xMin2, xMax2);
    hD0CentPtMDphiEtaGapLikeSign = new THnF("hD0CentPtMDphiEtaGapLikeSign", "hD0CentPtMDphiEtaGapLikeSign", nDim2, nBins2, xMin2, xMax2);
    hD0CentPtMDphiEtaGapMixed = new THnF("hD0CentPtMDphiEtaGapMixed", "hD0CentPtMDphiEtaGapMixed", nDim2, nBins2, xMin2, xMax2);
