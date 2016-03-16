@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<job fileListSyntax="paths" minFilesPerProcess="30" maxFilesPerProcess="50" simulateSubmission="false">
+
+        <stdout discard="true" />
+        <stderr URL="file:./err/$JOBID.err" />
+                
+        <Generator>
+        <Location>./report/</Location>
+        <ScriptLocation>./csh/</ScriptLocation>
+        <ListLocation>./list/</ListLocation>
+        </Generator>
+                                                
+<command>
+starver SL15c
+
+root4star -b -l -q runPicoMixedEvent.C\(\"$FILELIST\",\"$JOBID.root\"\) &gt;&amp; ${JOBID}.log
+tar -zcvf ${JOBID}.log.tgz ${JOBID}.log
+chmod g+rw ${JOBID}.root.d0Hists.root
+chmod g+rw ${JOBID}.log.tgz
+chmod g+rw &prodPath;/err/${JOBID}.err
+chmod g+rw &prodPath;/csh/sched${JOBID}.csh
+chmod g+rw &prodPath;/list/sched${JOBID}.list
+
+</command>
+
+<input URL="filelist:&prodPath;/&listOfFiles;" />
+<output fromScratch="*.root" toURL="&prodPath;/production/&productionId;/" />
+<output fromScratch="*.log.tgz" toURL="&prodPath;/log/&productionId;/" />
+
+<SandBox installer="ZIP">
+	<Package name="LocalLibraries">
+		<File>file:./StRoot/</File>
+    <File>file:./runPicoMixedEvent.C</File>
+		<File>file:./run14AuAu200GeVPrescales/</File>
+    <File>file:./picoList_bad_MB.list</File>
+		<File>file:./.sl64_gcc482/</File>
+	</Package>
+</SandBox>
+
+</job>
